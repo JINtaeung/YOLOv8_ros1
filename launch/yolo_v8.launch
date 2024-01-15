@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<launch>
+  <!-- if PILS: "yolo_v8_gazebo.py" 
+	else "yolo_v8.py" -->
+  <node pkg="yolov8_ros" type="yolo_v8.py" name="yolov8_ros" output="screen" >
+  <!-- select img data type, usb_cam or gazebo -->
+    <param name="img_data"	     value="ssusb_cam"/>
+    <param name="weight_path"       value="$(find yolov8_ros)/weights/yolov8n.pt"/>
+    <param name="image_topic"       value="/iris/usb_cam/image_raw" /> <!-- need only PILS -->
+    <param name="image_width"       value="640" />
+    <param name="image_height"      value="480" />
+    <param name="box_topic"         value="/yolo/box_size" />
+    <param name="cen_topic"         value="/yolo/center" />\
+    <param name="conf"              value="0.6" />
+  <!-- detection result image publish, true or false -->
+    <param name="result_pub"         value="true" />
+  </node>
+
+</launch>
